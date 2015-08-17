@@ -4,8 +4,8 @@ require 'spec_helper'
 
 describe Task do
   before do
-    @test_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12' })
-    @test_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12' })
+    @test_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
+    @test_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
   end
   describe '#==' do
     it 'is the same task if it has the same description' do
@@ -20,8 +20,8 @@ describe Task do
      end
 
      it 'returns the tasks sorted by date' do
-       sort_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12' })
-       sort_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-08-12' })
+       sort_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false })
+       sort_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-08-12', complete: false })
        sort_task.save
        sort_task2.save
        expect(Task.all.first).to eq sort_task2
@@ -44,6 +44,12 @@ describe Task do
   describe '#due_date' do
     it 'returns due date of task' do
       expect(@test_task.due_date).to eq '2015-09-12'
+    end
+  end
+
+  describe '#complete?' do
+    it 'returns false by default' do
+      expect(@test_task.complete?).to eq false
     end
   end
 
