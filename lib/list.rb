@@ -2,8 +2,8 @@ class List
   attr_reader :name, :id
 
   def initialize(attributes)
-    @name = attributes.fetch('name')
-    @id = attributes.fetch('id')
+    @name = attributes.fetch(:name)
+    @id = attributes.fetch(:id)
   end
 
   def self.all
