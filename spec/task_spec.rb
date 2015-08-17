@@ -53,4 +53,13 @@ describe Task do
     end
   end
 
+  describe '#completed' do
+    it 'set complete to true' do
+      @test_task.save
+      @test_task.completed
+      
+      expect(@test_task.complete?).to eq true
+    end
+  end
+
 end

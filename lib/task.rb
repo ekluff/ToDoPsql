@@ -42,4 +42,9 @@ class Task
     @complete
   end
 
+  def completed
+    result = DB.exec("UPDATE tasks SET complete = TRUE WHERE description = '#{self.description}' RETURNING complete;")
+    @complete = true if result.first.fetch('complete') == 't'
+  end
+
 end
