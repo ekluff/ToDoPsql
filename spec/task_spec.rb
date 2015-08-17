@@ -18,6 +18,14 @@ describe Task do
      it "is empty at first" do
        expect(Task.all()).to(eq([]))
      end
+
+     it 'returns the tasks sorted by date' do
+       sort_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12' })
+       sort_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-08-12' })
+       sort_task.save
+       sort_task2.save
+       expect(Task.all.first).to eq sort_task2
+     end
   end
 
   describe '#save' do
