@@ -3,7 +3,7 @@ require('sinatra/reloader')
 require('./lib/list')
 require('./lib/task')
 require('pg')
-require('spec_helper')
+# require('./spec/spec_helper')
 also_reload('lib/**/*.rb')
 
 DB = PG.connect({dbname: 'to_do'})
@@ -29,8 +29,8 @@ post('/list/new') do
 end
 
 get '/list/:id' do
-	id = params.fetch('id')
-
+	id = params.fetch('id').to_i
+	@lists = List.all
 	@list = List.find(id)
 	@tasks = @list.tasks # to build #tasks
 
@@ -38,14 +38,15 @@ get '/list/:id' do
 end
 
 post '/list/:id/task/new' do
-	id = params.fetch('id')
+	id = params.fetch('id').to_i
 	description = params.fetch('description')
 	due_date = params.fetch('due_date')
 
-	@list = List.find(id) # to build .find |id|
-	@tasks = @list.tasks # to build #tasks
+	@list = List.find(id)
 
 	Task.new({description: description, due_date: due_date, list_id: id}).save
+
+	@tasks = @list.tasks
 
 	erb(:list_detail)
 end

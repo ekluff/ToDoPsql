@@ -16,11 +16,12 @@ end
 
 describe('adding a new task', {:type => :feature}) do
   it('allows a user to click a list to see the tasks and a task') do
-    list = List.new({name: 'Animals to Wash', category: 'Work'}).save
-    visit('/list/#{list.id}')
+    list = List.new({name: 'Animals to Wash', category: 'Work'})
+    list.save
+    visit("/list/#{list.id}")
 
     fill_in('description', with: 'Platypus')
-    fill_in('due-date', with: '1986-05-29')
+    fill_in('due_date', with: '1986-05-29')
 
     click_button('+ Task')
     expect(page).to have_content('Platypus')
