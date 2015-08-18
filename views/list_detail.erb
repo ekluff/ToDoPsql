@@ -1,0 +1,43 @@
+<div class="row text-center">
+  <h3><%= @list.name %></h3>
+
+
+<table class="table table-hover">
+  <tr id="first-row">
+    <th width="50%">Description</th>
+    <th width="20%">Due By</th>
+    <th width="20%"></th>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td width="50%">
+        <%= task.description %>
+      </td>
+      <td width="20%">
+        <%= task.due_date.month %>/<%= task.due_date.day %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <form class="new-task form-control" action="/list/<%= @list.id %>/task/new" method="post">
+
+      <td>
+        <label hidden for="description">Description</label>
+        <input type="text" name="description" placeholder="Wash the cat">
+      </td>
+
+      <td>
+        <label for="due_date">Due Date</label>
+        <input type="date" name="due_date">
+      </td>
+
+      <td>
+        <button class="btn btn-danger btn-sm" name="submit" type="submit">+ Task</button>
+      </td>
+
+    </form>
+  </tr>
+
+</table>
+
+</div>

@@ -27,3 +27,25 @@ post('/list/new') do
 
 	erb(:index)
 end
+
+get '/list/:id' do
+	id = params.fetch('id')
+
+	@list = List.find(id) # to build .find |id|
+	@tasks = @list.tasks # to build #tasks
+
+	erb(:list_detail)
+end
+
+post '/list/:id/task/new' do
+	id = params.fetch('id')
+	description = params.fetch('description')
+	due_date = params.fetch('due_date')
+
+	@list = List.find(id) # to build .find |id|
+	@tasks = @list.tasks # to build #tasks
+
+	Task.new({description: description, due_date: due_date, list_id: id}).save
+
+	erb(:list_detail)
+end

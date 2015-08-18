@@ -4,7 +4,7 @@ class Task
   def initialize(attributes={})
     @description = attributes.fetch(:description, "")
     @list_id = attributes.fetch(:list_id).to_i
-    @due_date = attributes.fetch(:due_date)
+    @due_date = Date.parse(attributes.fetch(:due_date))
     @complete = attributes.fetch(:complete)
   end
 
