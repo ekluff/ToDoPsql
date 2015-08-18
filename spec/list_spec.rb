@@ -24,6 +24,14 @@ describe List do
     end
   end
 
+  describe("#category") do
+    it("returns the category of a list") do
+      list = List.new({ name: 'Animals to Wash', id: nil, category: 'Personal'})
+      list.save()
+      expect(list.category()).to(eq('Personal'))
+    end
+  end
+
   describe("#save") do
     it("lets you save lists to the database") do
       list = List.new({:name => "Epicodus stuff", :id => nil})
