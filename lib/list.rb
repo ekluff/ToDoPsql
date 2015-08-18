@@ -1,9 +1,10 @@
 class List
-  attr_reader :name, :id
+  attr_reader :name, :id, :category
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id).to_i
+    @category = attributes.fetch(:category, "")
   end
 
   def self.all
@@ -12,18 +13,19 @@ class List
     returned_lists.each do |list|
       name = list.fetch('name')
       id = list.fetch('id')
-      lists.push(List.new({ name: name, id: id }))
+      category = list.fetch('category')
+      lists.push(List.new({ name: name, id: id, category: category }))
     end
     lists
   end
 
   def save
-    result = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO lists (name, category) VALUES ('#{@name}', '#{@category}') RETURNING id;")
     @id = result.first.fetch("id").to_i
   end
 
 
   def ==(another_list)
-    self.name == another_list.name && self.id == another_list.id
+    self.name == another_list.name && self.id == another_list.id && self.category == another_list.category
   end
 end
