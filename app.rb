@@ -31,7 +31,7 @@ end
 get '/list/:id' do
 	id = params.fetch('id')
 
-	@list = List.find(id) # to build .find |id|
+	@list = List.find(id)
 	@tasks = @list.tasks # to build #tasks
 
 	erb(:list_detail)

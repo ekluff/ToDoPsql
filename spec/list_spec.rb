@@ -59,4 +59,19 @@ describe List do
     end
   end
 
+  describe("#tasks") do
+    it('returns an array of all tasks with one list_id') do
+      list = List.new({name: 'Animals to maintain', category: 'Private'})
+      list.save
+      task1 = Task.new({description: 'Pluck the duck', due_date: 'June 6, 1885', list_id: list.id})
+      task2 = Task.new({description: 'Eat some tacos', due_date: '2014-08-17', list_id: 0})
+      task3 = Task.new({description: 'Dry clean the hamster', due_date: '2107-02-06', list_id: list.id})
+      task1.save
+      task2.save
+      task3.save
+      # binding.pry
+      expect(list.tasks).to(eq([task1, task3]))
+    end
+  end
+
 end

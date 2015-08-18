@@ -5,7 +5,7 @@ class Task
     @description = attributes.fetch(:description, "")
     @list_id = attributes.fetch(:list_id).to_i
     @due_date = Date.parse(attributes.fetch(:due_date))
-    @complete = attributes.fetch(:complete)
+    @complete = attributes.fetch(:complete, false)
   end
 
   def ==(another_task)

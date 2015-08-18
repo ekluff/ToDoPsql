@@ -7,7 +7,7 @@ describe Task do
     @test_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
     @test_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
   end
-  
+
   describe '#==' do
     it 'is the same task if it has the same description' do
       expect(@test_task).to eq @test_task2
@@ -44,7 +44,7 @@ describe Task do
 
   describe '#due_date' do
     it 'returns due date of task' do
-      expect(@test_task.due_date).to eq '2015-09-12'
+      expect(@test_task.due_date).to eq Date.parse('2015-09-12')
     end
   end
 

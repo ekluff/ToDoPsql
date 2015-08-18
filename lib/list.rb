@@ -32,6 +32,16 @@ class List
     end
   end
 
+  def tasks
+    tasks = []
+    Task.all.each do |task|
+      if task.list_id == self.id
+        tasks.push(task)
+      end
+    end
+    tasks
+  end
+
   def ==(another_list)
     self.name == another_list.name && self.id == another_list.id && self.category == another_list.category
   end
