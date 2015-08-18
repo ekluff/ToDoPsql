@@ -9,12 +9,21 @@
     <th width="20%"></th>
   </tr>
   <% @tasks.each do |task| %>
-    <tr>
+    <tr class="table-row-hover-area">
       <td width="50%">
         <%= task.description %>
       </td>
       <td width="20%">
         <%= task.due_date.month %>/<%= task.due_date.day %>
+      </td>
+      <td>
+        <% if task.complete? %>
+          Completed!
+        <% else %>
+          <form class="short" action="/list/<%= @list.id %>/<%= task.description %>/complete" method="post">
+            <button name="complete" class="hidden-complete-button btn-sm btn btn-primary" type="submit">Done!</button>
+          </form>
+        <% end %>
       </td>
     </tr>
   <% end %>
@@ -39,5 +48,5 @@
   </tr>
 
 </table>
-
 </div>
+<a class="btn btn-warning btn-sm" href='/'>Back</a>

@@ -26,4 +26,15 @@ describe('adding a new task', {:type => :feature}) do
     click_button('+ Task')
     expect(page).to have_content('Platypus')
   end
+
+  describe('complete a task', {:type => :feature}) do
+    it('allows a user to mark a task as complete') do
+      list = List.new({name: 'Animals to Wash', category: 'Work'})
+      list.save
+      task = Task.new({description: 'Camel Coat Cleaning', list_id: list.id, due_date: '1988-08-09'})
+      task.save
+      visit("/list/#{list.id}")
+      click_link 'Done!'
+
+    end
 end

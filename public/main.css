@@ -1,0 +1,11 @@
+.hidden-complete-button {
+  visibility: hidden;
+}
+
+.table-row-hover-area:hover .hidden-complete-button  {
+  visibility: visible;
+}
+
+.short {
+  display: inline;
+}

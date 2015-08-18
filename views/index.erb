@@ -6,12 +6,19 @@
   <tr id="first-row">
     <th width="35%">Name</th>
     <th width="35%">Category</th>
-    <td width="20%" >
+    <td width="20%" class="text-center">
       <a href="/list/new" class="btn btn-primary btn-sm">+ List</a>
     </td>
   </tr>
   <% @lists.each do |list| %>
-    <tr><td width="100%"><a href="/list/<%= list.id %>"><%= list.name %></a></td></tr>
+    <tr><td width="35%"><a href="/list/<%= list.id %>"><%= list.name %></a></td>
+    <td width="35%">
+      <%= list.category %>
+    </td>
+    <td>
+
+    </td>
+    </tr>
   <% end %>
 </table>
 
