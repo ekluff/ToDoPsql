@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 
 
@@ -45,6 +46,16 @@ describe List do
       list1 = List.new({:name => "Epicodus stuff", :id => nil})
       list2 = List.new({:name => "Epicodus stuff", :id => nil})
       expect(list1).to(eq(list2))
+    end
+  end
+
+  describe(".find") do
+    it('finds the list by it\'s id') do
+      list1 = List.new({:name => "Epicodus stuff", :id => nil})
+      list2 = List.new({:name => "Epicodus stuff", :id => nil})
+      list1.save
+      list2.save
+      expect(List.find(list1.id)).to eq list1
     end
   end
 

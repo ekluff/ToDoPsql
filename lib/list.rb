@@ -24,6 +24,13 @@ class List
     @id = result.first.fetch("id").to_i
   end
 
+  def self.find(id)
+    List.all.each do |list|
+      if list.id == id
+        return list
+      end
+    end
+  end
 
   def ==(another_list)
     self.name == another_list.name && self.id == another_list.id && self.category == another_list.category

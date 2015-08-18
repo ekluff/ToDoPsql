@@ -7,6 +7,7 @@ describe Task do
     @test_task = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
     @test_task2 = Task.new({ description: 'learn SQL', list_id: 1, due_date: '2015-09-12', complete: false})
   end
+  
   describe '#==' do
     it 'is the same task if it has the same description' do
       expect(@test_task).to eq @test_task2
@@ -57,7 +58,7 @@ describe Task do
     it 'set complete to true' do
       @test_task.save
       @test_task.completed
-      
+
       expect(@test_task.complete?).to eq true
     end
   end
