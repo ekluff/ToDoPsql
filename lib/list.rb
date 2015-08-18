@@ -3,7 +3,7 @@ class List
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @id = attributes.fetch(:id).to_i
+    @id = attributes.fetch(:id, nil).to_i
     @category = attributes.fetch(:category, "")
   end
 

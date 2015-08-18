@@ -1,15 +1,23 @@
-require 'sinatra'
+require('sinatra')
+require('sinatra/reloader')
+require('./lib/list')
+require('./lib/task')
+require('pg')
+require('spec_helper')
+also_reload('lib/**/*.rb')
+
+DB = PG.connect({dbname: 'to_do'})
 
 get '/'  do
 	@lists = List.all
 	erb(:index)
 end
 
-get('list/new') do
+get('/list/new') do
 	erb(:list_form)
 end
 
-post('list/new') do
+post('/list/new') do
 	category = params.fetch('category')
 	name = params.fetch('name')
 
