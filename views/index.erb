@@ -1,0 +1,18 @@
+<div class="row text-center">
+  <h3>Lists</h3>
+
+
+<table class="table table-hover">
+  <tr id="first-row">
+    <th width="40%">Name</th>
+    <th width="40%">Category</th>
+    <td width="10%" id='add_contact'>
+      <a href="/add_contact" class="btn btn-primary btn-sm">+</a>
+    </td>
+  </tr>
+  <% @lists.each do |list| %>
+    <tr><td width="100%"><a href="/list/<%= list.id %>"><%= list.name %></a></td></tr>
+  <% end %>
+</table>
+
+</div>
